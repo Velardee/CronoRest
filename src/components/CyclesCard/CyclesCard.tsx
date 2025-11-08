@@ -14,8 +14,10 @@ const CyclesCard: FunctionComponent<CyclesCardProps> = ({
   cycles,
   mode,
 }) => {
+  const CYCLES_TO_SHOW = 6;
+
   const getCycleHours = (index: number): string => {
-    const cycles = mode === "wake" ? 6 - index : index + 1;
+    const cycles = CYCLES_TO_SHOW - index;
     const hours = (cycles * SLEEP_CYCLE_MINUTES) / 60;
     return `${hours.toFixed(1)}h (${cycles} ciclos)`;
   };
@@ -38,14 +40,16 @@ const CyclesCard: FunctionComponent<CyclesCardProps> = ({
               key={index}
               className="w-full rounded-xl bg-white/30 flex flex-row justify-between items-center border border-white/50 px-4 py-4 gap-2 relative animate-fade-in"
             >
-              {
-                index < 2 && <div className="absolute top-[-15px] right-4 bg-emerald-400 px-2 text-sm rounded-lg">Recomendado</div>
-              }
+              {index < 2 && (
+                <div className="absolute top-[-15px] right-4 bg-emerald-400 px-2 text-sm rounded-lg">
+                  Recomendado
+                </div>
+              )}
               <div className="flex items-center gap-4">
                 {mode === "wake" ? (
-                  <Sun color="yellow" size={30} />
-                ) : (
                   <Moon color="#6366f1" />
+                ) : (
+                  <Sun color="yellow" size={30} />
                 )}
                 <p className="text-2xl text-white font-medium">{cycle}</p>
               </div>
