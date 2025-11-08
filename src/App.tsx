@@ -34,7 +34,7 @@ function App() {
         );
         times.push(formatTime(wakeTime));
       }
-      setCycles(times);
+      setCycles(times.reverse());
     }
   }, [time, mode]);
 
@@ -71,7 +71,7 @@ function App() {
       {cycles.length > 0 ? (
         <CyclesCard cycles={cycles} time={time} mode={mode} />
       ) : (
-        <p className="text-base text-[#E5EBE5]">
+        <p className="text-base text-[#E5EBE5] text-center md:text-justify">
           La mayoría de adultos necesitan entre 5-6 ciclos (7.5-9 horas) de
           sueño por noche
         </p>
